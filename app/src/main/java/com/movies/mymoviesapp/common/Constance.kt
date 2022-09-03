@@ -1,4 +1,5 @@
 package com.movies.mymoviesapp.common
 
-object Constance {
-}
+import com.movies.mymoviesapp.presentaion.MainActivity
+
+lateinit var MAIN: MainActivity
