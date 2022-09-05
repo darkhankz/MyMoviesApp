@@ -1,5 +1,6 @@
 package com.movies.mymoviesapp.presentaion.main
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,14 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.ViewHolder>(
 
     override fun getItemCount(): Int {
         return listMovies.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setList(list: List<Result>){
+        listMovies = list
+        notifyDataSetChanged()
+
+
     }
 
 }
