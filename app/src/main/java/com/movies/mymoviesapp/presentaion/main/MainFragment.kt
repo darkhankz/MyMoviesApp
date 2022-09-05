@@ -34,8 +34,12 @@ class MainFragment : Fragment() {
 
     private fun init() {
         val viewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
+        viewModel.getMovies()
         recyclerView = mBinding.rvMain
         recyclerView.adapter = mAdapter
+        viewModel.myMovie.observe(viewLifecycleOwner) { list ->
+            mAdapter.setList(list.body()!!.results)
+        }
 
     }
 
