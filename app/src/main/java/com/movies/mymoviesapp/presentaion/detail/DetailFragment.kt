@@ -51,9 +51,13 @@ class DetailFragment : Fragment() {
         mBinding.imgDetailFavorite.setOnClickListener {
             if (!isFavorite) {
                 mBinding.imgDetailFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                viewModel.insert(currentMovie){
+                }
                 isFavorite = true
             } else{
                 mBinding.imgDetailFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                viewModel.delete(currentMovie){
+                }
                 isFavorite = false
             }
         }

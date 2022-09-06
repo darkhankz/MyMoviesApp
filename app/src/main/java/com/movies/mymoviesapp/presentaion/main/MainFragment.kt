@@ -37,6 +37,7 @@ class MainFragment : Fragment() {
 
     private fun init() {
         val viewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
+        viewModel.initDataBase()
         viewModel.getMovies()
         recyclerView = mBinding.rvMain
         recyclerView.adapter = mAdapter
