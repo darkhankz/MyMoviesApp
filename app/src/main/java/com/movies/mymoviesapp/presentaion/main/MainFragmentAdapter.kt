@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.movies.mymoviesapp.R
 import com.movies.mymoviesapp.common.MAIN
+import com.movies.mymoviesapp.common.MOVIE_URL
 import com.movies.mymoviesapp.domain.models.Result
 import kotlinx.android.synthetic.main.item_card.view.*
 
@@ -25,7 +26,7 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.ViewHolder>(
         holder.itemView.item_date_card.text = listMovies[position].release_date
         Glide
             .with(MAIN)
-            .load(listMovies[position].poster_path)
+            .load(MOVIE_URL + listMovies[position].poster_path)
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.itemView.item_image_card)
@@ -42,6 +43,18 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.ViewHolder>(
         notifyDataSetChanged()
 
 
+    }
+
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.itemView.setOnClickListener{
+            MainFragment.clickMovie(listMovies[holder.adapterPosition])
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        holder.itemView.setOnClickListener(null)
+        super.onViewDetachedFromWindow(holder)
     }
 
 }
