@@ -1,14 +1,16 @@
 package com.movies.mymoviesapp.presentaion.main
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.RecyclerView
+import com.movies.mymoviesapp.R
+import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.databinding.FragmentMainBinding
+import com.movies.mymoviesapp.domain.models.Result
 
 
 class MainFragment : Fragment() {
@@ -24,6 +26,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
        _mMainBinding = FragmentMainBinding.inflate(layoutInflater, container, false)
+        setHasOptionsMenu(true)
         return mBinding.root
     }
 
@@ -49,4 +52,26 @@ class MainFragment : Fragment() {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.item_favorite -> {
+                MAIN.navController.navigate(R.id.action_mainFragment_to_favoriteFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+    companion object{
+        fun clickMovie(model: Result){
+            val bundle = Bundle()
+            bundle.putSerializable("movie", model)
+            MAIN.navController.navigate(R.id.action_mainFragment_to_detailFragment, bundle)
+        }
+    }
 }
