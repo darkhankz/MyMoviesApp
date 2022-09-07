@@ -9,16 +9,16 @@ import java.io.Serializable
 data class Result(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-
+    @ColumnInfo
     val overview: String,
-
+    @ColumnInfo
     val backdrop_path: String,
-
+    @ColumnInfo
     val poster_path: String,
-
+    @ColumnInfo
     val release_date: String,
-
+    @ColumnInfo
     val title: String,
-
+    @ColumnInfo
     val vote_average: Double,
 ) : Serializable

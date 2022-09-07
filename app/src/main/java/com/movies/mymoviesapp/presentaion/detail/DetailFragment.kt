@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.movies.mymoviesapp.R
+import com.movies.mymoviesapp.SaveShared
 import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.common.MOVIE_URL
 import com.movies.mymoviesapp.databinding.FragmentDetailBinding
@@ -36,12 +37,20 @@ class DetailFragment : Fragment() {
     }
 
     private fun init() {
+        val valueBoolean = SaveShared.getFavorit(MAIN, currentMovie.id.toString())
         val viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+
+        if (isFavorite != valueBoolean){
+            mBinding.imgDetailFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }else{
+            mBinding.imgDetailFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+
+        }
+
         Glide
             .with(MAIN)
-            .load(MOVIE_URL + currentMovie.poster_path)
+            .load(MOVIE_URL + currentMovie.backdrop_path)
             .centerCrop()
-            .placeholder(R.drawable.ic_launcher_foreground)
             .into(mBinding.imgDetail)
         mBinding.tvTitleDetails.text = currentMovie.title
         mBinding.tvDateDetails.text = currentMovie.release_date
@@ -49,16 +58,16 @@ class DetailFragment : Fragment() {
         mBinding.tvRatingDetails.text = currentMovie.vote_average.toString()
 
         mBinding.imgDetailFavorite.setOnClickListener {
-            if (!isFavorite) {
+            isFavorite = if (isFavorite == valueBoolean) {
                 mBinding.imgDetailFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-                viewModel.insert(currentMovie){
-                }
-                isFavorite = true
+                SaveShared.setFavorit(MAIN, currentMovie.id.toString(), true)
+                viewModel.insert(currentMovie){}
+                true
             } else{
                 mBinding.imgDetailFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                viewModel.delete(currentMovie){
-                }
-                isFavorite = false
+                viewModel.delete(currentMovie){}
+                SaveShared.setFavorit(MAIN, currentMovie.id.toString(), false)
+                false
             }
         }
 

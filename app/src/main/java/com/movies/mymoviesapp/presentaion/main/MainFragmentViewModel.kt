@@ -14,7 +14,6 @@ import retrofit2.Response
 
 class MainFragmentViewModel(application: Application): AndroidViewModel(application) {
     private val repository = RetrofitRepository()
-    private lateinit var moviesRepositoryImpl: MoviesRepositoryImpl
     val myMovie: MutableLiveData<Response<MoviesPopularModel>> = MutableLiveData()
     private val context = application
 

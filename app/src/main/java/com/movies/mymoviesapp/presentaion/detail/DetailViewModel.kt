@@ -13,7 +13,6 @@ class DetailViewModel: ViewModel() {
             MOVIE_REPOSItORY_IMPL.deleteMovie(result){
                 onSuccess()
             }
-
         }
     fun insert(result: Result, onSuccess:() -> Unit) =
         viewModelScope.launch (Dispatchers.IO){
