@@ -42,7 +42,6 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.ViewHolder>(
         listMovies = list
         notifyDataSetChanged()
 
-
     }
 
     override fun onViewAttachedToWindow(holder: ViewHolder) {
