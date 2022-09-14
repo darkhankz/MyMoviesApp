@@ -1,12 +1,12 @@
 package com.movies.mymoviesapp.data.room.repository
 
 import androidx.lifecycle.LiveData
-import com.movies.mymoviesapp.domain.models.Result
+import com.movies.mymoviesapp.domain.models.Movie
 
 interface MoviesRepository {
-    val allMovies: LiveData<List<Result>>
-    suspend fun insertMovie(result: Result, onSuccess:() -> Unit)
-    suspend fun deleteMovie(result: Result, onSuccess:() -> Unit)
+    val allMovies: LiveData<List<Movie>>
+    suspend fun insertMovie(result: Movie, onSuccess:() -> Unit)
+    suspend fun deleteMovie(result: Movie, onSuccess:() -> Unit)
 
 
 }

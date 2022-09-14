@@ -2,15 +2,13 @@ package com.movies.mymoviesapp.presentaion.main
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.RecyclerView
 import com.movies.mymoviesapp.R
 import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.databinding.FragmentMainBinding
-import com.movies.mymoviesapp.domain.models.Result
+import com.movies.mymoviesapp.domain.models.Movie
 
 
 class MainFragment : Fragment() {
@@ -42,7 +40,7 @@ class MainFragment : Fragment() {
         recyclerView = mBinding.rvMain
         recyclerView.adapter = mAdapter
         viewModel.myMovie.observe(viewLifecycleOwner) { list ->
-            mAdapter.setList(list.body()!!.results)
+            mAdapter.appendMovies(list.body()!!.results)
         }
 
     }
@@ -69,7 +67,7 @@ class MainFragment : Fragment() {
 
     }
     companion object{
-        fun clickMovie(model: Result){
+        fun clickMovie(model: Movie){
             val bundle = Bundle()
             bundle.putSerializable("movie", model)
             MAIN.navController.navigate(R.id.action_mainFragment_to_detailFragment, bundle)

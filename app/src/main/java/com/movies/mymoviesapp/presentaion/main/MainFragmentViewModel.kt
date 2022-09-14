@@ -16,10 +16,11 @@ class MainFragmentViewModel(application: Application): AndroidViewModel(applicat
     private val repository = RetrofitRepository()
     val myMovie: MutableLiveData<Response<MoviesPopularModel>> = MutableLiveData()
     private val context = application
+    private val pagePopular = 2
 
     fun getMovies(){
         viewModelScope.launch {
-            myMovie.value = repository.getMovies()
+            myMovie.value = repository.getMovies(pagePopular)
         }
     }
 

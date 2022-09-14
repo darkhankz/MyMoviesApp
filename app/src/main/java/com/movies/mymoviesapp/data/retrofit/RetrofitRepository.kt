@@ -5,7 +5,7 @@ import com.movies.mymoviesapp.domain.models.MoviesPopularModel
 import retrofit2.Response
 
 class RetrofitRepository  {
-    suspend fun getMovies(): Response<MoviesPopularModel> {
-        return RetrofitInstance.api.getPopularMovie()
+    suspend fun getMovies(page: Int): Response<MoviesPopularModel> {
+        return RetrofitInstance.api.getPopularMovie(page = page)
     }
 }

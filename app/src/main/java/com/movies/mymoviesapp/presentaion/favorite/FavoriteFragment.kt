@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.movies.mymoviesapp.R
 import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.databinding.FragmentFavoriteBinding
-import com.movies.mymoviesapp.domain.models.Result
+import com.movies.mymoviesapp.domain.models.Movie
 
 class FavoriteFragment : Fragment() {
 
@@ -49,7 +49,7 @@ class FavoriteFragment : Fragment() {
     }
 
     companion object{
-        fun clickMovie(model: Result){
+        fun clickMovie(model: Movie){
             val bundle = Bundle()
             bundle.putSerializable("movie", model)
             MAIN.navController.navigate(R.id.action_favoriteFragment_to_detailFragment, bundle)

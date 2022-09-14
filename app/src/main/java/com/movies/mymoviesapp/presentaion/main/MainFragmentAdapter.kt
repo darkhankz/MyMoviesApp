@@ -1,6 +1,5 @@
 package com.movies.mymoviesapp.presentaion.main
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,11 @@ import com.bumptech.glide.Glide
 import com.movies.mymoviesapp.R
 import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.common.MOVIE_URL
-import com.movies.mymoviesapp.domain.models.Result
+import com.movies.mymoviesapp.domain.models.Movie
 import kotlinx.android.synthetic.main.item_card.view.*
 
 class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.ViewHolder>() {
-    private var listMovies = emptyList<Result>()
+    private var listMovies = mutableListOf<Movie>()
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,12 +36,18 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.ViewHolder>(
         return listMovies.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<Result>){
-        listMovies = list
-        notifyDataSetChanged()
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun setList(list: List<Movie>){
+//        listMovies = list
+//        notifyDataSetChanged()
+//    }
 
-
+    fun appendMovies(movies: List<Movie>) {
+        this.listMovies.addAll(movies)
+        notifyItemRangeInserted(
+            this.listMovies.size,
+            movies.size - 1
+        )
     }
 
     override fun onViewAttachedToWindow(holder: ViewHolder) {

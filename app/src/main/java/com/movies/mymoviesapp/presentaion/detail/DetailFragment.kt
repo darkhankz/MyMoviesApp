@@ -12,13 +12,13 @@ import com.movies.mymoviesapp.SaveShared
 import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.common.MOVIE_URL
 import com.movies.mymoviesapp.databinding.FragmentDetailBinding
-import com.movies.mymoviesapp.domain.models.Result
+import com.movies.mymoviesapp.domain.models.Movie
 
 class DetailFragment : Fragment() {
 
     private var _mDetailBinding: FragmentDetailBinding? = null
     private val mBinding get() = _mDetailBinding!!
-    private lateinit var currentMovie: Result
+    private lateinit var currentMovie: Movie
     private var isFavorite = false
 
 
@@ -27,7 +27,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _mDetailBinding = FragmentDetailBinding.inflate(layoutInflater, container, false)
-        currentMovie = arguments?.getSerializable("movie") as Result
+        currentMovie = arguments?.getSerializable("movie") as Movie
         return mBinding.root
     }
 

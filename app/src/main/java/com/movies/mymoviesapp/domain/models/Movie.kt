@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "movie_table")
-data class Result(
+data class Movie(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo

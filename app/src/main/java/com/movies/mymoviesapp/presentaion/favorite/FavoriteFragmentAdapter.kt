@@ -9,13 +9,11 @@ import com.bumptech.glide.Glide
 import com.movies.mymoviesapp.R
 import com.movies.mymoviesapp.common.MAIN
 import com.movies.mymoviesapp.common.MOVIE_URL
-import com.movies.mymoviesapp.domain.models.Result
-import com.movies.mymoviesapp.presentaion.main.MainFragment
-import com.movies.mymoviesapp.presentaion.main.MainFragment.Companion.clickMovie
+import com.movies.mymoviesapp.domain.models.Movie
 import kotlinx.android.synthetic.main.item_card.view.*
 
 class FavoriteFragmentAdapter: RecyclerView.Adapter<FavoriteFragmentAdapter.ViewHolder>() {
-    private var listMovies = emptyList<Result>()
+    private var listMovies = emptyList<Movie>()
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,7 +38,7 @@ class FavoriteFragmentAdapter: RecyclerView.Adapter<FavoriteFragmentAdapter.View
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<Result>){
+    fun setList(list: List<Movie>){
         listMovies = list
         notifyDataSetChanged()
 
