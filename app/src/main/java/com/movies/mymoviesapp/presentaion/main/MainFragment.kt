@@ -18,6 +18,7 @@ class MainFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private val mAdapter by lazy { MainFragmentAdapter() }
+    private var popularMoviesPage = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +37,7 @@ class MainFragment : Fragment() {
     private fun init() {
         val viewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         viewModel.initDataBase()
-        viewModel.getMovies()
+        viewModel.getMovies(popularMoviesPage)
         recyclerView = mBinding.rvMain
         recyclerView.adapter = mAdapter
         viewModel.myMovie.observe(viewLifecycleOwner) { list ->

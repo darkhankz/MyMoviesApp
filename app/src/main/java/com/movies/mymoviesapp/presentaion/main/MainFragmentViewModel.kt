@@ -8,6 +8,7 @@ import com.movies.mymoviesapp.common.MOVIE_REPOSItORY_IMPL
 import com.movies.mymoviesapp.data.retrofit.RetrofitRepository
 import com.movies.mymoviesapp.data.room.MoviesRoomDataBase
 import com.movies.mymoviesapp.data.room.repository.MoviesRepositoryImpl
+import com.movies.mymoviesapp.domain.models.Movie
 import com.movies.mymoviesapp.domain.models.MoviesPopularModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -16,11 +17,10 @@ class MainFragmentViewModel(application: Application): AndroidViewModel(applicat
     private val repository = RetrofitRepository()
     val myMovie: MutableLiveData<Response<MoviesPopularModel>> = MutableLiveData()
     private val context = application
-    private val pagePopular = 2
 
-    fun getMovies(){
+    fun getMovies( page: Int = 1){
         viewModelScope.launch {
-            myMovie.value = repository.getMovies(pagePopular)
+            myMovie.value = repository.getMovies(page)
         }
     }
 
